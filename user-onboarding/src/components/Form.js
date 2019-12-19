@@ -5,8 +5,8 @@ import * as Yup from "yup";
 import axios from "axios";
 
 const UserForm = ({values, errors, touched, status}) => {
+
     return (
-        <div>
             <Form>
                 <FormContainer>
                     <FormSection>
@@ -46,7 +46,6 @@ const UserForm = ({values, errors, touched, status}) => {
                 </FormContainer>
                 
             </Form>
-        </div>
     );
 }
 
@@ -65,7 +64,22 @@ const FormikUserForm = withFormik({
         email: Yup.string().required("A valid email address is required."),
         password: Yup.string().required("A password is required."),
         ToS: Yup.boolean().oneOf([true], "You must accept the Terms of Service to continue.")
-    })
+    }),
+
+    handleSubmit(values, {setStatus, resetForm}){
+        console.log("submit button clicked. form values are: ", values);
+        axios
+            .post(`shttps:/reqres.in/api/users/`, values)
+            .then(res => {
+                console.log("successfully posted to endpoint. the response is: ", res);
+                setStatus(res.data);
+                resetForm();
+            })
+            .catch(err=>{
+                console.log("The data was not posted.", err);
+            })
+    }
+
 })(UserForm);
 
 export default FormikUserForm;
