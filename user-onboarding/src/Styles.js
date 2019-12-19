@@ -28,3 +28,18 @@ export const FormContainer = styled.div`
     display: flex;
     border-bottom: solid black 1px;
 `;
+
+export const AllUsersContainer = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    width: 90%;
+`;
+
+export const IndividualUserContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    border: solid black 1px;
+    padding: 0 2%;
+    margin: 2%;
+`;

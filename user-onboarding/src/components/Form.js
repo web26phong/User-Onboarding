@@ -1,10 +1,16 @@
 import React, {useState, useEffect} from "react";
+import Users from "./Users";
 import {FormStyle, FieldSection, StyledLabel, FormSection, FormContainer} from "../Styles";
-import {withFormik, Form, Field, yupToFormErrors} from "formik";
+import {withFormik, Form, Field} from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
 const UserForm = ({values, errors, touched, status}) => {
+    const [users, setUsers] = useState([]);
+    useEffect(()=> {
+        console.log("The status has changed. Current status: ", status);
+        status && setUsers(users => [...users, status]);
+    }, [status])
 
     return (
             <Form>
@@ -44,6 +50,16 @@ const UserForm = ({values, errors, touched, status}) => {
                         {touched.acceptedToS && errors.acceptedToS && (<span>{errors.acceptedToS}</span>)}
                     </FormSection>
                 </FormContainer>
+                <Users users={users}/>
+                {/* <div>
+                    {users.map(user=>(
+                        <div>
+                            <span>Name: {user.name}</span>
+                            <span>Email: {user.email}</span>
+                            <span>Password: {user.password}</span>
+                        </div>
+                    ))}
+                </div> */}
             </Form>
     );
 }
@@ -62,7 +78,7 @@ const FormikUserForm = withFormik({
         name: Yup.string().required("A name is required."),
         email: Yup.string().required("A valid email address is required."),
         password: Yup.string().required("A password is required."),
-        ToS: Yup.boolean().oneOf([true], "You must accept the Terms of Service to continue.")
+        acceptedToS: Yup.boolean().oneOf([true], "You must accept the Terms of Service to continue.")
     }),
 
     handleSubmit(values, {setStatus, resetForm}){
