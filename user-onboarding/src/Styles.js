@@ -3,8 +3,6 @@ import styled from "styled-components";
 export const FormStyle = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 `;
 
 export const StyledLabel = styled.label`
@@ -14,6 +12,8 @@ export const StyledLabel = styled.label`
 export const FieldSection = styled.div`
     display: flex;
     color: black;
+    justify-content: space-between;
+    width: 350px;
 `;
 
 export const FormSection = styled.div`
@@ -26,4 +26,5 @@ export const FormSection = styled.div`
 
 export const FormContainer = styled.div`
     display: flex;
+    border-bottom: solid black 1px;
 `;
