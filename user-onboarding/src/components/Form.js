@@ -35,16 +35,15 @@ const UserForm = ({values, errors, touched, status}) => {
                                 <button type="submit">Submit</button> 
                             </FieldSection>
                         </FormStyle>
-                </FormSection>
+                    </FormSection>
 
-                <FormSection>
+                    <FormSection>
                         {touched.name && errors.name && (<span>{errors.name}</span>)}
                         {touched.email && errors.email && (<span>{errors.email}</span>)}
                         {touched.password && errors.password && (<span>{errors.password}</span>)}
                         {touched.acceptedToS && errors.acceptedToS && (<span>{errors.acceptedToS}</span>)}
-                </FormSection>
+                    </FormSection>
                 </FormContainer>
-                
             </Form>
     );
 }
