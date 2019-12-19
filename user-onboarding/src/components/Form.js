@@ -28,7 +28,7 @@ const UserForm = ({values, errors, touched, status}) => {
 
                             <FieldSection>
                                 <label htmlFor="ToS">I understand and accept the Terms of Service: </label>
-                                <Field id="ToS" type="checkbox" name="ToS" check={values.ToS}/>
+                                <Field id="ToS" type="checkbox" name="acceptedToS" check={values.ToS}/>
                             </FieldSection>
 
                             <FieldSection>
@@ -41,7 +41,7 @@ const UserForm = ({values, errors, touched, status}) => {
                         {touched.name && errors.name && (<span>{errors.name}</span>)}
                         {touched.email && errors.email && (<span>{errors.email}</span>)}
                         {touched.password && errors.password && (<span>{errors.password}</span>)}
-                        {touched.ToS && errors.ToS && (<span>{errors.ToS}</span>)}
+                        {touched.acceptedToS && errors.acceptedToS && (<span>{errors.acceptedToS}</span>)}
                 </FormSection>
                 </FormContainer>
                 
@@ -55,7 +55,7 @@ const FormikUserForm = withFormik({
             name: name || "",
             email: email || "",
             password: password || "",
-            ToS: ToS || false
+            acceptedToS: ToS || false
         };
     },
 
@@ -69,7 +69,7 @@ const FormikUserForm = withFormik({
     handleSubmit(values, {setStatus, resetForm}){
         console.log("submit button clicked. form values are: ", values);
         axios
-            .post(`shttps:/reqres.in/api/users/`, values)
+            .post(`https:/reqres.in/api/users/`, values)
             .then(res => {
                 console.log("successfully posted to endpoint. the response is: ", res);
                 setStatus(res.data);
